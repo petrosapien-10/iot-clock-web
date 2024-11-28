@@ -1,30 +1,34 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./App.css";
+import LoginButton from "./Login";
+import MainPage from "./MainPage";
 import TimeZonePage from "./TimeZonePage";
 import TimerPage from "./TimerPage";
 import CounterPage from "./CounterPage";
-import "./App.css";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
-  return (
-    <Router>
-      <div className="App">
-        <h1 className="App-title">Time, Timer, and Counter</h1>
-        <div className="App-nav-container">
-          <nav className="App-nav">
-            <Link to="/country">Set Time</Link>
-            <Link to="/timer">Set Timer</Link>
-            <Link to="/counter">Set Counter</Link>
-          </nav>
-        </div>
+  const { isAuthenticated, logout } = useAuth0();
 
+  return (
+    <div className="My-app">
+      <Router>
         <Routes>
-          <Route path="/country" element={<TimeZonePage />} />
-          <Route path="/timer" element={<TimerPage />} />
-          <Route path="/counter" element={<CounterPage />} />
+          {/* Default login route */}
+          <Route path="/" element={<LoginButton />} />
+          {/* Main page after login */}
+          {isAuthenticated && (
+            <>
+              <Route path="/*" element={<MainPage />} />
+              <Route path="main/country" element={<TimeZonePage />} />
+              <Route path="main/timer" element={<TimerPage />} />
+              <Route path="main/counter" element={<CounterPage />} />
+            </>
+          )}
         </Routes>
-      </div>
-    </Router>
+      </Router>
+    </div>
   );
 }
 

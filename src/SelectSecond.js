@@ -17,13 +17,22 @@ export default function SelectSecond({ timeChange }) {
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Seconds</InputLabel>
+        <InputLabel id="demo-simple-select-label" sx={{ color: "white" }}>
+          Seconds
+        </InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={second}
           label="Seconds"
           onChange={handleChange}
+          sx={{
+            color: "white",
+            fontWeight: "bold",
+            ".MuiOutlinedInput-notchedOutline": {
+              borderColor: "#0bdbf1", // Set border color to white by default
+            },
+          }}
         >
           <MenuItem value={0}>0</MenuItem>
           <MenuItem value={1}>1</MenuItem>

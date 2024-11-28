@@ -36,7 +36,17 @@ function CounterPage() {
   };
   return (
     <div className="counter">
-      <h2>Counter</h2>
+      <div
+        style={{
+          fontFamily: "sans-serif",
+          fontSize: "55px",
+          fontWeight: "bold",
+          color: "#c818ea",
+          marginBottom: "40px",
+        }}
+      >
+        Counter
+      </div>
       <div className="counterButton-container">
         <button
           onClick={() => setIsCounterActive(!isCounterActive)}
@@ -49,7 +59,10 @@ function CounterPage() {
         </button>
       </div>
 
-      <Link to="/" style={{ display: "block", marginTop: "20px" }}>
+      <Link
+        to="/"
+        style={{ display: "block", marginTop: "20px", color: "#c818ea" }}
+      >
         Back to Home
       </Link>
     </div>

@@ -21,13 +21,22 @@ export default function SelectTimeZone({ timeZoneChange }) {
   return (
     <Box sx={{ minWidth: 160 }}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">TimeZone</InputLabel>
+        <InputLabel id="demo-simple-select-label" sx={{ color: "white" }}>
+          TimeZone
+        </InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={timeZone}
           label="TimeZone"
           onChange={handleChange}
+          sx={{
+            color: "white",
+            fontWeight: "bold",
+            ".MuiOutlinedInput-notchedOutline": {
+              borderColor: "#0bdbf1", // Set border color to white by default
+            },
+          }}
         >
           {timeZoneList.map((timeZone) => (
             <MenuItem value={timeZone} key={timeZone}>

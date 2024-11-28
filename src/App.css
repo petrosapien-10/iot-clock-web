@@ -1,3 +1,14 @@
+.My-app {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-image: url("/src/clock_background_image.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 .App {
   display: flex;
   flex-direction: column;
@@ -6,13 +17,6 @@
   width: 500px;
   max-height: 800px;
   height: fit-content;
-  /* background-color: rgb(176 130 7); */
-  background: linear-gradient(
-    35deg,
-    rgba(176, 130, 7, 1),
-    rgba(255, 223, 186, 1)
-  );
-
   padding-left: 40px;
   padding-right: 40px;
   padding-bottom: 30px;
@@ -25,6 +29,8 @@
   width: 100%;
   font-size: 3rem;
   text-align: center;
+  color: #c818ea;
+  font-weight: bold;
 }
 
 .App-nav-container {
@@ -46,7 +52,7 @@
 }
 
 .App-nav a {
-  color: #007bff;
+  color: #0bdbf1;
   text-decoration: none;
   font-size: 1.3rem;
   font-weight: bold;
@@ -83,11 +89,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(
-    135deg,
-    #0627bd,
-    #0d9e18
-  ); /* Gradient background */
+  background: linear-gradient(110deg, #1e70e5, #077e95);
   color: white;
   font-size: 1rem;
   font-weight: bold;
@@ -151,4 +153,8 @@
   gap: 40px;
   width: 100%;
   margin-top: 10px;
+}
+
+.login {
+  display: flex;
 }

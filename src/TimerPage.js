@@ -35,7 +35,17 @@ function TimerPage() {
 
   return (
     <div className="timer">
-      <h2>Set Timer</h2>
+      <div
+        style={{
+          fontFamily: "sans-serif",
+          fontSize: "55px",
+          fontWeight: "bold",
+          color: "#c818ea",
+          marginBottom: "40px",
+        }}
+      >
+        Set Timer
+      </div>
       <div className="timer-container">
         <SelectMinute timeChange={setSelectedMinute} />
         <SelectSecond timeChange={setSelectedSecond} />
@@ -44,7 +54,10 @@ function TimerPage() {
       <button onClick={sendTimeToBackend} className="my_button">
         Set time
       </button>
-      <Link to="/" style={{ display: "block", marginTop: "20px" }}>
+      <Link
+        to="/"
+        style={{ display: "block", marginTop: "20px", color: "#c818ea" }}
+      >
         Back to Home
       </Link>
     </div>

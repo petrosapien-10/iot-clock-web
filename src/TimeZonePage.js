@@ -27,7 +27,17 @@ export default function CountryPage() {
 
   return (
     <div className="timer">
-      <h2>Set TimeZone</h2>
+      <div
+        style={{
+          fontFamily: "sans-serif",
+          fontSize: "55px",
+          fontWeight: "bold",
+          color: "#c818ea",
+          marginBottom: "40px",
+        }}
+      >
+        Set TimeZone
+      </div>
       <div className="timer-container">
         <div className="country-container">
           <SelectTimeZone timeZoneChange={setSelectedTimeZone} />
@@ -42,7 +52,10 @@ export default function CountryPage() {
         </button>
       </div>
 
-      <Link to="/" style={{ display: "block", marginTop: "20px" }}>
+      <Link
+        to="/"
+        style={{ display: "block", marginTop: "20px", color: "#c818ea" }}
+      >
         Back to Home
       </Link>
     </div>
