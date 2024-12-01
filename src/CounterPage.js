@@ -1,39 +1,58 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import CounterClock from "./CounterClock"; // Import CounterClock
 
 function CounterPage() {
-  const [isCounterActive, setIsCounterActive] = useState(false);
-  const [reset, setReset] = useState("");
-  useEffect(() => {
-    sendCounterActiveToBackend(isCounterActive);
-  }, [isCounterActive]);
+  const [counterState, setCounterState] = useState("stopped"); // stopped, running, paused
+  const [counterValue, setCounterValue] = useState(0); // Current counter value
+  const [reset, setReset] = useState(false);
 
+  // Effect to handle the counter functionality
   useEffect(() => {
-    sendResetToBackend(reset);
+    let interval;
+
+    if (counterState === "running") {
+      interval = setInterval(() => {
+        setCounterValue((prevValue) => prevValue + 1);
+      }, 1000); // Increment counter every second
+    }
+
+    if (counterState === "paused" || counterState === "stopped") {
+      clearInterval(interval); // Stop incrementing
+    }
+
+    return () => clearInterval(interval); // Cleanup interval on unmount
+  }, [counterState]);
+
+  // Effect to handle the reset functionality
+  useEffect(() => {
+    if (reset) {
+      setCounterValue(0); // Reset the counter to zero
+      sendResetToBackend(); // Notify backend about reset
+      setReset(false); // Reset the reset state
+      setCounterState("stopped"); // Stop the counter
+    }
   }, [reset]);
 
-  const sendCounterActiveToBackend = async (isCounterActive) => {
+  // Send counter state to backend
+  const sendCounterStateToBackend = async (state) => {
     try {
-      // await axios.post("http://your-backend-api-url.com/api/counter", {
-      //   isCounterActive,
-      // });
-      console.log("Counter active sent to backend:", isCounterActive);
+      console.log("Counter state sent to backend:", state);
     } catch (error) {
-      console.error("Error sending counter active to backend:", error);
+      console.error("Error sending counter state to backend:", error);
     }
   };
 
-  const sendResetToBackend = async (reset) => {
+  // Send reset action to backend
+  const sendResetToBackend = async () => {
     try {
-      // await axios.post("http://your-backend-api-url.com/api/reset", {
-      //   reset,
-      // });
-      console.log("Reset sent to backend:", reset);
+      console.log("Reset sent to backend");
     } catch (error) {
       console.error("Error sending reset to backend:", error);
     }
   };
+
   return (
     <div className="counter">
       <div
@@ -47,19 +66,51 @@ function CounterPage() {
       >
         Counter
       </div>
+
+      {/* Use CounterClock to show the counter value */}
+      <CounterClock value={counterValue} />
+
       <div className="counterButton-container">
-        <button
-          onClick={() => setIsCounterActive(!isCounterActive)}
-          className="my_button"
-        >
-          {isCounterActive ? "Stop Counter" : "Start Counter"}
-        </button>
-        <button onClick={() => setReset("true")} className="my_button">
-          Reset
-        </button>
+        {/* Start Button: Show only if the counter is stopped */}
+        {counterState === "stopped" && (
+          <button
+            onClick={() => setCounterState("running")}
+            className="my_button"
+          >
+            Start
+          </button>
+        )}
+
+        {/* Pause Button: Show only if the counter is running */}
+        {counterState === "running" && (
+          <button
+            onClick={() => setCounterState("paused")}
+            className="my_button"
+          >
+            Pause
+          </button>
+        )}
+
+        {/* Resume Button: Show only if the counter is paused */}
+        {counterState === "paused" && (
+          <button
+            onClick={() => setCounterState("running")}
+            className="my_button"
+          >
+            Resume
+          </button>
+        )}
+
+        {/* Reset Button: Show only if the counter is running or paused */}
+        {(counterState === "running" || counterState === "paused") && (
+          <button onClick={() => setReset(true)} className="my_button">
+            Reset
+          </button>
+        )}
       </div>
 
       <Link
+        className="backToHome"
         to="/"
         style={{ display: "block", marginTop: "20px", color: "#c818ea" }}
       >

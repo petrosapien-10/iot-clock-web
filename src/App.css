@@ -4,7 +4,7 @@
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background-image: url("/src/clock_background_image.jpg");
+  background-image: url("/src/background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -158,3 +158,27 @@
 .login {
   display: flex;
 }
+
+.backToHome {
+  text-decoration: none;
+  font-size: 18px;
+  color: #c818ea; /* Default color */
+  font-weight: bold;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.backToHome:hover {
+  color: #8a2be2; /* Change to a lighter or complementary color on hover */
+  transform: scale(1.1); /* Slightly increase the size */
+}
+
+.backToHome:active {
+  color: #5b0b7e; /* Darker color for active state */
+  transform: scale(0.95); /* Slightly shrink on click */
+}
+
+.backToHome:visited {
+  color: #c818ea; /* Keep the same color as the default to prevent purple */
+}
+
+

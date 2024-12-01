@@ -10,7 +10,7 @@ function App() {
   const { logout } = useAuth0();
   return (
     <div className="App">
-      <div className="App-title">Time, Timer, and Counter</div>
+      <div className="App-title">What would you like to do?</div>
       <div className="App-nav-container">
         <nav className="App-nav">
           <Link to="main/country">Set Time</Link>

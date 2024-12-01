@@ -94,7 +94,6 @@ export default function SelectSecond({ timeChange }) {
           <MenuItem value={57}>57</MenuItem>
           <MenuItem value={58}>58</MenuItem>
           <MenuItem value={59}>59</MenuItem>
-          <MenuItem value={60}>60</MenuItem>
         </Select>
       </FormControl>
     </Box>
